@@ -16,7 +16,7 @@ install_3proxy() {
 	git clone https://github.com/z3apa3a/3proxy
 	cd 3proxy
 	ln -s Makefile.Linux Makefile
-	make
+	make -j
 	sudo make install
 	cp ./scripts/rc.d/proxy.sh /etc/init.d/3proxy
     cd $WORKDIR
