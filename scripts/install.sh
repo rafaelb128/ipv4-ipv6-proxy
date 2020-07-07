@@ -13,15 +13,12 @@ gen64() {
 }
 install_3proxy() {
     echo "installing 3proxy"
-    URL="https://github.com/z3APA3A/3proxy/archive/0.8.13.tar.gz"
-    wget -qO- $URL | bsdtar -xvf-
-    cd 3proxy-0.8.13
-    make -f Makefile.Linux
-    mkdir -p /usr/local/etc/3proxy/{bin,logs,stat}
-    cp src/3proxy /usr/local/etc/3proxy/bin/
-    cp ./scripts/rc.d/proxy.sh /etc/init.d/3proxy
-    chmod +x /etc/init.d/3proxy
-    chkconfig 3proxy on
+	git clone https://github.com/z3apa3a/3proxy
+	cd 3proxy
+	ln -s Makefile.Linux Makefile
+	make
+	sudo make install
+	cp ./scripts/rc.d/proxy.sh /etc/init.d/3proxy
     cd $WORKDIR
 }
 
@@ -106,7 +103,7 @@ ip6tables -I INPUT -p tcp -s $IP6::/64 -m state --state NEW -j ACCEPT
 gen_ifconfig >$WORKDIR/boot_ifconfig.sh
 chmod +x boot_*.sh /etc/rc.local
 
-gen_3proxy >/usr/local/etc/3proxy/3proxy.cfg
+gen_3proxy >/etc/3proxy/3proxy.cfg
 
 cat >>/etc/rc.local <<EOF
 bash ${WORKDIR}/boot_iptables.sh
