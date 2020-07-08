@@ -1,6 +1,4 @@
 #!/bin/sh
-ulimit -n 10000000
-
 random() {
 	tr </dev/urandom -dc A-Za-z0-9 | head -c5
 	echo
@@ -108,7 +106,6 @@ chmod +x boot_*.sh /etc/rc.local
 gen_3proxy >/etc/3proxy/3proxy.cfg
 
 cat >>/etc/rc.local <<EOF
-ulimit -n 10000000
 bash ${WORKDIR}/boot_iptables.sh
 bash ${WORKDIR}/boot_ifconfig.sh
 service 3proxy start
