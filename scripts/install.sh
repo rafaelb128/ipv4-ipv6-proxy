@@ -99,6 +99,7 @@ FIRST_PORT=9999
 LAST_PORT=$(($FIRST_PORT + $COUNT))
 
 gen_data >$WORKDIR/data.txt
+
 ip6tables -I INPUT -p tcp -s $IP6::/64 -m state --state NEW -j ACCEPT
 gen_ifconfig >$WORKDIR/boot_ifconfig.sh
 chmod +x boot_*.sh /etc/rc.local
@@ -106,6 +107,7 @@ chmod +x boot_*.sh /etc/rc.local
 gen_3proxy >/etc/3proxy/3proxy.cfg
 
 cat >>/etc/rc.local <<EOF
+ulimit -n 1009999
 bash ${WORKDIR}/boot_iptables.sh
 bash ${WORKDIR}/boot_ifconfig.sh
 service 3proxy start
