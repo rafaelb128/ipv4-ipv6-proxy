@@ -21,7 +21,6 @@ install_3proxy() {
 	#cp scripts/init.d/3proxy.sh /etc/init.d/3proxy
 	
 	
-	echo "installing 3proxy"
 	URL="https://github.com/z3APA3A/3proxy/releases/download/0.9.3/3proxy-0.9.3.tar.gz"
 	wget -qO- $URL | bsdtar -xvf-
 	cd 3proxy-0.9.3
