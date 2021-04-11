@@ -13,8 +13,8 @@ Redirect connections from different ports at one ipv4 address to unique random i
 2. Disable the limits (`ulimit -n 1009999` and `ulimit -c unlimited`)
 3. Install jq: `yum install epel-release -y` and `yum install jq -y`
 4. For regular user/pass auth proxies, use: `bash <(curl -s "https://raw.githubusercontent.com/rafaelb128/ipv4-ipv6-proxy/master/scripts/install.sh")`
-5.a For no auth proxies, use: `bash <(curl -s "https://raw.githubusercontent.com/rafaelb128/ipv4-ipv6-proxy/master/scripts/install-ipauth.sh")`
-6. If you generate a lot of proxy you can see at which state you are by running `watch "cat /home/proxy-installer/data.txt | wc -l"` and `watch "ifconfig | wc -l"`
+4.a For no auth proxies, use: `bash <(curl -s "https://raw.githubusercontent.com/rafaelb128/ipv4-ipv6-proxy/master/scripts/install-ipauth.sh")`
+5. If you generate a lot of proxy you can see at which state you are by running `watch "cat /home/proxy-installer/data.txt | wc -l"` and `watch "ifconfig | wc -l"`
 
 1. After installation dowload the file `proxy.zip`
    * File structure: `IP4:PORT:LOGIN:PASS` or `IP4:PORT`
