@@ -13,12 +13,25 @@ gen64() {
 }
 install_3proxy() {
     echo "installing 3proxy"
-	git clone https://github.com/z3apa3a/3proxy
-	cd 3proxy
-	ln -s Makefile.Linux Makefile
-	make -j
-	sudo make install
-	cp scripts/init.d/3proxy.sh /etc/init.d/3proxy
+	#git clone https://github.com/z3apa3a/3proxy
+	#cd 3proxy
+	#ln -s Makefile.Linux Makefile
+	#make -j
+	#sudo make install
+	#cp scripts/init.d/3proxy.sh /etc/init.d/3proxy
+	
+	
+	echo "installing 3proxy"
+	URL="https://github.com/z3APA3A/3proxy/releases/download/0.9.3/3proxy-0.9.3.tar.gz"
+	wget -qO- $URL | bsdtar -xvf-
+	cd 3proxy-0.9.3
+	make -f Makefile.Linux
+	mkdir -p /usr/local/etc/3proxy/{bin,logs,stat}
+	cp src/3proxy /usr/local/etc/3proxy/bin/
+	cp ./scripts/init.d/3proxy.sh /etc/init.d/3proxy
+	chmod +x /etc/init.d/3proxy
+	chkconfig 3proxy on
+	
     cd $WORKDIR
 }
 
